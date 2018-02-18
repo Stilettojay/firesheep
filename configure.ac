@@ -59,7 +59,7 @@ case "$host_os" in
 		DLL_EXT="dylib"
 		FIRESHEEP_PLATFORM_NAME=OSX
 		FIRESHEEP_PLATFORM="osx"
-		CFLAGS="-isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.6"
+		CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.6"
 	;;
 	linux*)
 		DLL_EXT="so"
@@ -100,9 +100,9 @@ AC_SUBST(BOOST_STRING_ALGO_LIBS)
 # END BOOST LIBS
 
 if test x$FIRESHEEP_PLATFORM_NAME = xLINUX; then
-	PKG_CHECK_MODULES(HAL, [hal])
-	AC_SUBST(HAL_CFLAGS)
-	AC_SUBST(HAL_LIBS)
+	PKG_CHECK_MODULES(UDEV, [libudev])
+	AC_SUBST(UDEV_CFLAGS)
+	AC_SUBST(UDEV_LIBS)
 fi
 
 CXXFLAGS="-Wall -g -O0"

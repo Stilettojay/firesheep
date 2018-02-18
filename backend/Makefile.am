@@ -25,7 +25,7 @@ libfiresheep_la_SOURCES = \
 	deps/http-parser/http_parser.c
 
 if PLATFORM_OSX
-CXXFLAGS += -DPLATFORM_OSX -arch i386 -arch x86_64
+CXXFLAGS += -DPLATFORM_OSX -arch i386 -arch x86_64 -I/usr/include -I/usr/local/include
 libfiresheep_la_SOURCES += src/osx_platform.cpp
 libfiresheep_la_LDFLAGS  = -framework Security
 libfiresheep_la_LDFLAGS += -framework SystemConfiguration
@@ -43,9 +43,9 @@ endif
 if PLATFORM_LINUX
 CXXFLAGS += -DPLATFORM_LINUX
 libfiresheep_la_SOURCES += src/linux_platform.cpp
-libfiresheep_la_CXXFLAGS = $(PCAP_CFLAGS) $(BOOST_CPPFLAGS) $(HAL_CFLAGS)
+libfiresheep_la_CXXFLAGS = $(PCAP_CFLAGS) $(BOOST_CPPFLAGS) $(UDEV_CFLAGS)
 libfiresheep_la_CFLAGS   = $(libfiresheep_la_CXXFLAGS)
-libfiresheep_la_LIBADD   = $(PCAP_LIBS) $(BOOST_FORMAT_LIBS) $(BOOST_STRING_ALGO_LIBS) $(HAL_LIBS)
+libfiresheep_la_LIBADD   = $(PCAP_LIBS) $(BOOST_FORMAT_LIBS) $(BOOST_STRING_ALGO_LIBS) $(UDEV_LIBS)
 endif
 
 CFLAGS += $(CXXFLAGS)
